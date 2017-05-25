@@ -1,15 +1,17 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const dotenv = require('dotenv').config()
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var posts = require('./routes/posts');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
-var app = express();
+const index = require('./routes/index');
+const users = require('./routes/users');
+const posts = require('./routes/posts');
+
+const app = express();
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -18,6 +20,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+var PORT = process.env.PORT || 8080
+
 
 app.use('/', index);
 app.use('/users', users);
